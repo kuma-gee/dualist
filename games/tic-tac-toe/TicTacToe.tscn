@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://games/tic-tac-toe/TicTacToe.gd" type="Script" id=1]
+[ext_resource path="res://games/tic-tac-toe/player-o.png" type="Texture" id=2]
+[ext_resource path="res://games/tic-tac-toe/player-x.png" type="Texture" id=3]
+[ext_resource path="res://games/tic-tac-toe/field.png" type="Texture" id=4]
+
+[node name="TicTacToe" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+player_x_texture = ExtResource( 3 )
+player_o_texture = ExtResource( 2 )
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 4 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GridContainer" type="GridContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+columns = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
