@@ -2,6 +2,7 @@
 *.import
 
 *.keystore
+*.kra
 
 build/
 *.css*
