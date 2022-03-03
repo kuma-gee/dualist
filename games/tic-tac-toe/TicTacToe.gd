@@ -49,6 +49,7 @@ func _on_GridValues_grid_changed(idx):
 		var grid_item_pos = grid_middle_item.rect_global_position
 		var texture_size = winning_line_texture.get_size()
 		tex.rect_global_position = grid_item_pos + (grid_item_size / 2) - (texture_size / 2)
+		# TODO: rotate line
 		add_child(tex)
 		
 		print(line)
