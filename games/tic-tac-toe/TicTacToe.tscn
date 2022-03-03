@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://games/tic-tac-toe/TicTacToe.gd" type="Script" id=1]
 [ext_resource path="res://games/tic-tac-toe/player-o.png" type="Texture" id=2]
 [ext_resource path="res://games/tic-tac-toe/player-x.png" type="Texture" id=3]
 [ext_resource path="res://games/tic-tac-toe/field.png" type="Texture" id=4]
 [ext_resource path="res://games/tic-tac-toe/GridValues.gd" type="Script" id=5]
+[ext_resource path="res://games/tic-tac-toe/line.png" type="Texture" id=6]
 
 [node name="TicTacToe" type="Control"]
 anchor_right = 1.0
@@ -15,6 +16,7 @@ __meta__ = {
 }
 player_x_texture = ExtResource( 3 )
 player_o_texture = ExtResource( 2 )
+winning_line_texture = ExtResource( 6 )
 
 [node name="TextureRect" type="TextureRect" parent="."]
 anchor_right = 1.0
@@ -36,3 +38,5 @@ __meta__ = {
 [node name="GridValues" type="Node" parent="."]
 script = ExtResource( 5 )
 grid_path = NodePath("../GridContainer")
+
+[connection signal="grid_changed" from="GridValues" to="." method="_on_GridValues_grid_changed"]

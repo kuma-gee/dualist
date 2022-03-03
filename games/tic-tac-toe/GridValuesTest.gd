@@ -3,7 +3,6 @@ extends "res://addons/gut/test.gd"
 var grid: GridContainer
 var grid_values: GridValues
 
-
 func _create_grid(col: int):
 	grid = GridContainer.new()
 	grid.columns = col

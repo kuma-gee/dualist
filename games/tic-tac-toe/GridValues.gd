@@ -1,10 +1,11 @@
 class_name GridValues extends Node
 
+signal grid_changed(idx)
+
 export var grid_path: NodePath
 onready var grid: GridContainer = get_node(grid_path)
 
 var values = []
-
 
 func load_grid():
 	values = []
@@ -12,7 +13,7 @@ func load_grid():
 	var columns = grid.columns
 	var row = []
 	for idx in range(0, grid.get_child_count()):
-		var child: Button = grid.get_child(idx)
+		var child = grid.get_child(idx)
 		child.connect("pressed", self, "_on_grid_pressed", [idx])
 		row.append(false)
 
@@ -26,8 +27,10 @@ func _on_grid_pressed(idx: int) -> void:
 	var col = idx % grid.columns
 
 	values[row][col] = !values[row][col]
+	emit_signal("grid_changed", Vector2(row, col))
 
 
+# TODO: check by value, multiple players has to be supported
 func has_nth_in_line(count: int) -> Array:
 	var size = values.size()
 	var consecutiveValues = 0
