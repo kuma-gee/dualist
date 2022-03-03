@@ -12,6 +12,7 @@ export var player_x_texture: Texture
 export var player_o_texture: Texture
 
 onready var grid := $GridContainer
+onready var grid_values := $GridValues
 
 var current_player = Player.X
 
@@ -25,6 +26,9 @@ func _on_field_btn_pressed(btn: TextureButton):
 	btn.disabled = true
 	btn.texture_disabled = _get_player_texture()
 	current_player = Player.O if current_player == Player.X else Player.X
+
+	# TODO: check winning
+
 
 func _get_player_texture() -> Texture:
 	if current_player == Player.X:

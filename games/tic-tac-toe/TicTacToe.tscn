@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://games/tic-tac-toe/TicTacToe.gd" type="Script" id=1]
 [ext_resource path="res://games/tic-tac-toe/player-o.png" type="Texture" id=2]
 [ext_resource path="res://games/tic-tac-toe/player-x.png" type="Texture" id=3]
 [ext_resource path="res://games/tic-tac-toe/field.png" type="Texture" id=4]
+[ext_resource path="res://games/tic-tac-toe/GridValues.gd" type="Script" id=5]
 
 [node name="TicTacToe" type="Control"]
 anchor_right = 1.0
@@ -31,3 +32,7 @@ columns = 3
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="GridValues" type="Node" parent="."]
+script = ExtResource( 5 )
+grid_path = NodePath("../GridContainer")
