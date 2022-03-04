@@ -11,7 +11,6 @@ const COLUMNS = 3
 
 export var player_x_texture: Texture
 export var player_o_texture: Texture
-export var winning_line_texture: Texture
 
 onready var grid := $GridContainer
 onready var grid_values := $GridValues
@@ -40,23 +39,19 @@ func _on_GridValues_grid_changed(idx):
 
 	var line = grid_values.has_nth_in_line(COLUMNS)
 	if line.size() > 0:
-		var middle = line[1]
-		var grid_middle_item = _get_grid_item_by_index_vector(middle)
+		_disable_all_grid_items()
+		for item in line:
+			var grid_item = _get_grid_item_by_index_vector(item)
+			grid_item.modulate = Color.red
 		
-		var tex = TextureRect.new()
-		tex.texture = winning_line_texture
-		
-		var grid_item_size = grid_middle_item.rect_size
-		var grid_item_pos = grid_middle_item.rect_global_position
-		var texture_size = winning_line_texture.get_size()
-		tex.rect_global_position = grid_item_pos + (grid_item_size / 2) - (texture_size / 2)
-		# TODO: rotate line
-		add_child(tex)
-		
-		print(line)
 
 	current_player = Player.O if current_player == Player.X else Player.X
 	grid_values.fill_value = current_player
+
+
+func _disable_all_grid_items():
+	for item in grid.get_children():
+		item.disabled = true
 
 
 func _get_player_texture() -> Texture:
