@@ -16,25 +16,56 @@ __meta__ = {
 player_x_texture = ExtResource( 3 )
 player_o_texture = ExtResource( 2 )
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="GridValues" type="Node" parent="."]
+script = ExtResource( 5 )
+grid_path = NodePath("../VBoxContainer/MarginContainer/GridContainer")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+margin_right = 1080.0
+margin_bottom = 1080.0
+rect_min_size = Vector2( 1080, 1080 )
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/MarginContainer"]
+margin_right = 1080.0
+margin_bottom = 1080.0
 texture = ExtResource( 4 )
 expand = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="GridContainer" type="GridContainer" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer/MarginContainer"]
+margin_right = 1080.0
+margin_bottom = 1080.0
 columns = 3
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="GridValues" type="Node" parent="."]
-script = ExtResource( 5 )
-grid_path = NodePath("../GridContainer")
+[node name="CenterContainer" type="CenterContainer" parent="VBoxContainer"]
+margin_top = 1084.0
+margin_right = 1080.0
+margin_bottom = 1116.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/CenterContainer"]
+margin_left = 540.0
+margin_right = 540.0
+margin_bottom = 32.0
+size_flags_horizontal = 0
+alignment = 1
+
+[node name="PlayerTurn" type="Label" parent="VBoxContainer/CenterContainer/VBoxContainer"]
+margin_bottom = 14.0
+
+[node name="Winning" type="Label" parent="VBoxContainer/CenterContainer/VBoxContainer"]
+margin_top = 18.0
+margin_bottom = 32.0
 
 [connection signal="grid_changed" from="GridValues" to="." method="_on_GridValues_grid_changed"]

@@ -12,8 +12,10 @@ const COLUMNS = 3
 export var player_x_texture: Texture
 export var player_o_texture: Texture
 
-onready var grid := $GridContainer
+onready var grid := $VBoxContainer/MarginContainer/GridContainer
 onready var grid_values := $GridValues
+onready var player_turn_label := $VBoxContainer/CenterContainer/VBoxContainer/PlayerTurn
+onready var winning_label := $VBoxContainer/CenterContainer/VBoxContainer/Winning
 
 var current_player = Player.X
 
@@ -22,7 +24,7 @@ func _ready():
 		var field_btn = FIELD_BUTTON.instance()
 		grid.add_child(field_btn)
 	
-	grid_values.fill_value = current_player
+	_toggle_player_turn()
 	grid_values.load_grid()
 
 
@@ -44,9 +46,17 @@ func _on_GridValues_grid_changed(idx):
 			var grid_item = _get_grid_item_by_index_vector(item)
 			grid_item.modulate = Color.red
 		
+		winning_label.text = "You win"
+	
+	_toggle_player_turn()
 
-	current_player = Player.O if current_player == Player.X else Player.X
+func _toggle_player_turn():
+	var is_player_X = current_player == Player.X
+	current_player = Player.O if is_player_X else Player.X
 	grid_values.fill_value = current_player
+	
+	var player_name = "X" if is_player_X else "O"
+	player_turn_label.text = "Player %s" % player_name
 
 
 func _disable_all_grid_items():
