@@ -30,6 +30,10 @@ config/name="dualist"
 run/main_scene="res://scenes/Main.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+SceneManager="*res://scenes/SceneManager.tscn"
+
 [display]
 
 window/size/width=1080

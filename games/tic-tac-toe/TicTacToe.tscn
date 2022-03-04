@@ -15,6 +15,8 @@ __meta__ = {
 }
 player_x_texture = ExtResource( 3 )
 player_o_texture = ExtResource( 2 )
+player_turn_label_path = NodePath("VBoxContainer/CenterContainer/VBoxContainer2/VBoxContainer/PlayerTurn")
+winning_label_path = NodePath("VBoxContainer/CenterContainer/VBoxContainer2/VBoxContainer/Winning")
 
 [node name="GridValues" type="Node" parent="."]
 script = ExtResource( 5 )
@@ -52,20 +54,51 @@ __meta__ = {
 [node name="CenterContainer" type="CenterContainer" parent="VBoxContainer"]
 margin_top = 1084.0
 margin_right = 1080.0
-margin_bottom = 1116.0
+margin_bottom = 1180.0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/CenterContainer"]
-margin_left = 540.0
-margin_right = 540.0
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/CenterContainer"]
+margin_left = 490.0
+margin_right = 589.0
+margin_bottom = 96.0
+custom_constants/separation = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/CenterContainer/VBoxContainer2"]
+margin_right = 53.0
 margin_bottom = 32.0
 size_flags_horizontal = 0
 alignment = 1
 
-[node name="PlayerTurn" type="Label" parent="VBoxContainer/CenterContainer/VBoxContainer"]
+[node name="PlayerTurn" type="Label" parent="VBoxContainer/CenterContainer/VBoxContainer2/VBoxContainer"]
+margin_right = 53.0
 margin_bottom = 14.0
+align = 1
 
-[node name="Winning" type="Label" parent="VBoxContainer/CenterContainer/VBoxContainer"]
+[node name="Winning" type="Label" parent="VBoxContainer/CenterContainer/VBoxContainer2/VBoxContainer"]
 margin_top = 18.0
+margin_right = 53.0
 margin_bottom = 32.0
+text = "You win!"
+align = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/CenterContainer/VBoxContainer2"]
+margin_top = 52.0
+margin_right = 99.0
+margin_bottom = 96.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BackMenu" type="Button" parent="VBoxContainer/CenterContainer/VBoxContainer2/VBoxContainer2"]
+margin_right = 99.0
+margin_bottom = 20.0
+text = "Back to Menu"
+
+[node name="Retry" type="Button" parent="VBoxContainer/CenterContainer/VBoxContainer2/VBoxContainer2"]
+margin_top = 24.0
+margin_right = 99.0
+margin_bottom = 44.0
+text = "Play again"
 
 [connection signal="grid_changed" from="GridValues" to="." method="_on_GridValues_grid_changed"]
+[connection signal="pressed" from="VBoxContainer/CenterContainer/VBoxContainer2/VBoxContainer2/BackMenu" to="." method="_on_BackMenu_pressed"]
+[connection signal="pressed" from="VBoxContainer/CenterContainer/VBoxContainer2/VBoxContainer2/Retry" to="." method="_on_Retry_pressed"]
