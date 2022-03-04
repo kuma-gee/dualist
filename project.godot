@@ -13,9 +13,15 @@ _global_script_classes=[ {
 "class": "GridValues",
 "language": "GDScript",
 "path": "res://games/tic-tac-toe/GridValues.gd"
+}, {
+"base": "Node",
+"class": "UnitTest",
+"language": "GDScript",
+"path": "res://test/UnitTest.gd"
 } ]
 _global_script_class_icons={
-"GridValues": ""
+"GridValues": "",
+"UnitTest": ""
 }
 
 [application]

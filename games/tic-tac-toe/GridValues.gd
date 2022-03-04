@@ -6,6 +6,8 @@ export var grid_path: NodePath
 onready var grid: GridContainer = get_node(grid_path)
 
 var values = []
+var fill_value = true
+
 
 func load_grid():
 	values = []
@@ -15,7 +17,7 @@ func load_grid():
 	for idx in range(0, grid.get_child_count()):
 		var child = grid.get_child(idx)
 		child.connect("pressed", self, "_on_grid_pressed", [idx])
-		row.append(false)
+		row.append(null)
 
 		if idx % columns == columns - 1:
 			values.append(row)
@@ -26,11 +28,10 @@ func _on_grid_pressed(idx: int) -> void:
 	var row = int(idx / grid.columns)
 	var col = idx % grid.columns
 
-	values[row][col] = !values[row][col]
+	values[row][col] = fill_value if values[row][col] == null else null
 	emit_signal("grid_changed", Vector2(row, col))
 
 
-# TODO: check by value, multiple players has to be supported
 func has_nth_in_line(count: int) -> Array:
 	var size = values.size()
 	var consecutiveValues = 0
@@ -41,7 +42,7 @@ func has_nth_in_line(count: int) -> Array:
 		for col_idx in range(0, size):
 			var value = values[row_idx][col_idx]
 
-			if value:
+			if value == fill_value:
 				consecutiveValues += 1
 			else:
 				consecutiveValues = 0
@@ -60,7 +61,7 @@ func has_nth_in_line(count: int) -> Array:
 		for row_idx in range(0, size):
 			var value = values[row_idx][col_idx]
 
-			if value:
+			if value == fill_value:
 				consecutiveValues += 1
 			else:
 				consecutiveValues = 0
@@ -81,7 +82,7 @@ func has_nth_in_line(count: int) -> Array:
 
 		while row_idx < size and col_idx < size:
 			var value = values[row_idx][col_idx]
-			if value:
+			if value == fill_value:
 				consecutiveValues += 1
 			else:
 				consecutiveValues = 0
@@ -107,7 +108,7 @@ func has_nth_in_line(count: int) -> Array:
 
 		while row_idx < size and col_idx >= 0:
 			var value = values[row_idx][col_idx]
-			if value:
+			if value == fill_value:
 				consecutiveValues += 1
 			else:
 				consecutiveValues = 0

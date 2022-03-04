@@ -1,7 +1,8 @@
-extends "res://addons/gut/test.gd"
+extends UnitTest
 
 var grid: GridContainer
 var grid_values: GridValues
+
 
 func _create_grid(col: int):
 	grid = GridContainer.new()
@@ -26,8 +27,8 @@ func test_load_grid():
 	assert_eq_deep(
 		grid_values.values,
 		[
-			[false, false],
-			[false, false],
+			[null, null],
+			[null, null],
 		]
 	)
 
@@ -40,8 +41,8 @@ func test_click_grid():
 	assert_eq_deep(
 		grid_values.values,
 		[
-			[true, false],
-			[true, false],
+			[true, null],
+			[true, null],
 		]
 	)
 
@@ -49,8 +50,8 @@ func test_click_grid():
 func test_has_empty_values():
 	_create_grid(2)
 	grid_values.values = [
-		[false, false],
-		[false, false],
+		[null, null],
+		[null, null],
 	]
 
 	assert_eq(grid_values.has_nth_in_line(2), [])
@@ -60,49 +61,67 @@ func test_has_nth_in_row():
 	_create_grid(2)
 	grid_values.values = [
 		[true, true],
-		[false, false],
+		[null, null],
 	]
 
 	var actual = grid_values.has_nth_in_line(2)
-	assert_eq(actual.size(), 2)
-	assert_has(actual, Vector2(0, 0))
-	assert_has(actual, Vector2(0, 1))
+	assert_contains_exact(actual, [Vector2(0, 0), Vector2(0, 1)])
 
 
 func test_has_nth_in_col():
 	_create_grid(2)
 	grid_values.values = [
-		[true, false],
-		[true, false],
+		[true, null],
+		[true, null],
 	]
 
 	var actual = grid_values.has_nth_in_line(2)
-	assert_eq(actual.size(), 2)
-	assert_has(actual, Vector2(0, 0))
-	assert_has(actual, Vector2(1, 0))
+	assert_contains_exact(actual, [Vector2(0, 0), Vector2(1, 0)])
 
 
 func test_has_nth_in_diag_from_left():
 	_create_grid(2)
 	grid_values.values = [
-		[true, false],
-		[false, true],
+		[true, null],
+		[null, true],
 	]
 
 	var actual = grid_values.has_nth_in_line(2)
-	assert_eq(actual.size(), 2)
-	assert_has(actual, Vector2(0, 0))
-	assert_has(actual, Vector2(1, 1))
+	assert_contains_exact(actual, [Vector2(0, 0), Vector2(1, 1)])
 
 
 func test_has_nth_in_diag_from_right():
 	_create_grid(2)
 	grid_values.values = [
-		[false, true],
-		[true, false],
+		[null, true],
+		[true, null],
 	]
 
 	var actual = grid_values.has_nth_in_line(2)
-	assert_eq(actual.size(), 2)
-	assert_has(actual, Vector2(1, 0))
-	assert_has(actual, Vector2(0, 1))
+	assert_contains_exact(actual, [Vector2(1, 0), Vector2(0, 1)])
+
+
+func test_fill_string_value():
+	_create_grid(2)
+	grid_values.fill_value = "X"
+
+	grid.get_child(0).emit_signal("pressed")
+
+	assert_eq_deep(
+		grid_values.values,
+		[
+			["X", null],
+			[null, null],
+		]
+	)
+
+
+func test_fill_string_has_nth_in_line():
+	_create_grid(2)
+	grid_values.fill_value = "X"
+
+	grid.get_child(0).emit_signal("pressed")
+	grid.get_child(2).emit_signal("pressed")
+
+	var actual = grid_values.has_nth_in_line(2)
+	assert_contains_exact(actual, [Vector2(0, 0), Vector2(1, 0)])

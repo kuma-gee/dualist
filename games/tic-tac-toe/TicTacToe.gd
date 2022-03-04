@@ -23,6 +23,7 @@ func _ready():
 		var field_btn = FIELD_BUTTON.instance()
 		grid.add_child(field_btn)
 	
+	grid_values.fill_value = current_player
 	grid_values.load_grid()
 
 
@@ -55,6 +56,7 @@ func _on_GridValues_grid_changed(idx):
 		print(line)
 
 	current_player = Player.O if current_player == Player.X else Player.X
+	grid_values.fill_value = current_player
 
 
 func _get_player_texture() -> Texture:
