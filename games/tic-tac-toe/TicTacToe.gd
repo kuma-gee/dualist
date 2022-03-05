@@ -9,9 +9,6 @@ const FIELD_COUNT = 9
 const FIELD_BUTTON = preload("res://games/tic-tac-toe/TicTacToeField.tscn")
 const COLUMNS = 3
 
-export var player_x_texture: Texture
-export var player_o_texture: Texture
-
 export var player_turn_label_path: NodePath
 onready var player_turn_label: Label = get_node(player_turn_label_path)
 
@@ -29,6 +26,7 @@ var current_player: int = -1
 func _ready():
 	_create_new_game()
 
+
 func _create_new_game():
 	for child in grid.get_children():
 		grid.remove_child(child)
@@ -42,16 +40,17 @@ func _create_new_game():
 	_toggle_player_turn()
 	grid_values.load_grid()
 
-func _get_grid_item_by_index_vector(vec: Vector2) -> TextureButton:
+
+func _get_grid_item_by_index_vector(vec: Vector2) -> Button:
 	var grid_index = vec.x * COLUMNS + vec.y
-	return grid.get_child(grid_index) as TextureButton
+	return grid.get_child(grid_index) as Button
 
 
 func _on_GridValues_grid_changed(idx):
 	var btn = _get_grid_item_by_index_vector(idx)
 	
 	btn.disabled = true
-	btn.texture_disabled = _get_player_texture()
+	btn.text = _get_player_text()
 
 	var line = grid_values.has_nth_in_line(COLUMNS)
 	if line.size() > 0:
@@ -65,23 +64,20 @@ func _on_GridValues_grid_changed(idx):
 	
 	_toggle_player_turn()
 
+
 func _toggle_player_turn():
 	current_player = Player.O if current_player == Player.X else Player.X
 	grid_values.fill_value = current_player
-	
-	var player_name = "X" if current_player == Player.X else "O"
-	player_turn_label.text = "Player %s" % player_name
+	player_turn_label.text = "Player %s" % _get_player_text()
+
+
+func _get_player_text() -> String:
+	return "X" if current_player == Player.X else "O"
 
 
 func _disable_all_grid_items():
 	for item in grid.get_children():
 		item.disabled = true
-
-
-func _get_player_texture() -> Texture:
-	if current_player == Player.X:
-		return player_x_texture
-	return player_o_texture
 
 
 func _on_Retry_pressed():

@@ -1,8 +1,6 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://games/tic-tac-toe/TicTacToe.gd" type="Script" id=1]
-[ext_resource path="res://games/tic-tac-toe/player-o.png" type="Texture" id=2]
-[ext_resource path="res://games/tic-tac-toe/player-x.png" type="Texture" id=3]
 [ext_resource path="res://games/tic-tac-toe/field.png" type="Texture" id=4]
 [ext_resource path="res://games/tic-tac-toe/GridValues.gd" type="Script" id=5]
 
@@ -13,8 +11,6 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-player_x_texture = ExtResource( 3 )
-player_o_texture = ExtResource( 2 )
 player_turn_label_path = NodePath("VBoxContainer/CenterContainer/VBoxContainer2/VBoxContainer/PlayerTurn")
 winning_label_path = NodePath("VBoxContainer/CenterContainer/VBoxContainer2/VBoxContainer/Winning")
 retry_button_path = NodePath("VBoxContainer/CenterContainer/VBoxContainer2/VBoxContainer2/Retry")
@@ -32,12 +28,13 @@ __meta__ = {
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
 margin_right = 1080.0
-margin_bottom = 1080.0
-rect_min_size = Vector2( 1080, 1080 )
+margin_bottom = 1820.0
+size_flags_vertical = 3
 
 [node name="TextureRect" type="TextureRect" parent="VBoxContainer/MarginContainer"]
+visible = false
 margin_right = 1080.0
-margin_bottom = 1080.0
+margin_bottom = 1820.0
 texture = ExtResource( 4 )
 expand = true
 __meta__ = {
@@ -46,16 +43,18 @@ __meta__ = {
 
 [node name="GridContainer" type="GridContainer" parent="VBoxContainer/MarginContainer"]
 margin_right = 1080.0
-margin_bottom = 1080.0
+margin_bottom = 1820.0
+custom_constants/vseparation = 0
+custom_constants/hseparation = 0
 columns = 3
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="CenterContainer" type="CenterContainer" parent="VBoxContainer"]
-margin_top = 1084.0
+margin_top = 1824.0
 margin_right = 1080.0
-margin_bottom = 1180.0
+margin_bottom = 1920.0
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/CenterContainer"]
 margin_left = 490.0
