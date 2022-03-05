@@ -17,6 +17,7 @@ player_x_texture = ExtResource( 3 )
 player_o_texture = ExtResource( 2 )
 player_turn_label_path = NodePath("VBoxContainer/CenterContainer/VBoxContainer2/VBoxContainer/PlayerTurn")
 winning_label_path = NodePath("VBoxContainer/CenterContainer/VBoxContainer2/VBoxContainer/Winning")
+retry_button_path = NodePath("VBoxContainer/CenterContainer/VBoxContainer2/VBoxContainer2/Retry")
 
 [node name="GridValues" type="Node" parent="."]
 script = ExtResource( 5 )
