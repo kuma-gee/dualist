@@ -1,0 +1,18 @@
+$transparent: Color(0, 0, 0, 0);
+
+$slider-border: 1;
+$slider-content-size: 3;
+
+$tic-tac-toe-primary: #fff;
+$tic-tac-toe-border: #333;
+
+Button.tic-tac-toe,
+Button.tic-tac-toe:disabled,
+Button.tic-tac-toe:hover,
+Button.tic-tac-toe:focus,
+Button.tic-tac-toe:pressed {
+  color: #{$tic-tac-toe-primary};
+  background: #{$transparent};
+  border-width: 5;
+  border-color: #{$tic-tac-toe-border};
+}

@@ -9,15 +9,50 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Reference",
+"class": "ArgumentParser",
+"language": "GDScript",
+"path": "res://addons/godot-css-theme/ArgumentParser.gd"
+}, {
+"base": "Reference",
+"class": "CSSParser",
+"language": "GDScript",
+"path": "res://addons/godot-css-theme/CSSParser.gd"
+}, {
+"base": "Reference",
+"class": "CSSSimplifier",
+"language": "GDScript",
+"path": "res://addons/godot-css-theme/CSSSimplifier.gd"
+}, {
 "base": "Node",
 "class": "GridValues",
 "language": "GDScript",
 "path": "res://games/tic-tac-toe/GridValues.gd"
 }, {
+"base": "Reference",
+"class": "OptParse",
+"language": "GDScript",
+"path": "res://addons/godot-css-theme/optparse.gd"
+}, {
+"base": "Reference",
+"class": "Options",
+"language": "GDScript",
+"path": "res://addons/godot-css-theme/Options.gd"
+}, {
 "base": "UnitTest",
 "class": "SceneTest",
 "language": "GDScript",
 "path": "res://test/SceneTest.gd"
+}, {
+"base": "Reference",
+"class": "Stylesheet",
+"language": "GDScript",
+"path": "res://addons/godot-css-theme/Stylesheet.gd"
+}, {
+"base": "Reference",
+"class": "ThemeApplier",
+"language": "GDScript",
+"path": "res://addons/godot-css-theme/ThemeApplier.gd"
 }, {
 "base": "Node",
 "class": "TicTacToeTestScene",
@@ -30,8 +65,15 @@ _global_script_classes=[ {
 "path": "res://test/UnitTest.gd"
 } ]
 _global_script_class_icons={
+"ArgumentParser": "",
+"CSSParser": "",
+"CSSSimplifier": "",
 "GridValues": "",
+"OptParse": "",
+"Options": "",
 "SceneTest": "",
+"Stylesheet": "",
+"ThemeApplier": "",
 "TicTacToeTestScene": "",
 "UnitTest": ""
 }
