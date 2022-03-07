@@ -6,6 +6,10 @@ $slider-content-size: 3;
 $tic-tac-toe-primary: #fff;
 $tic-tac-toe-border: #333;
 
+body {
+  font-family: url(font.tres);
+}
+
 Button.tic-tac-toe,
 Button.tic-tac-toe:disabled,
 Button.tic-tac-toe:hover,

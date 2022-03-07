@@ -94,6 +94,11 @@ window/size/width=1080
 window/size/height=1920
 window/stretch/aspect="keep"
 
+[gui]
+
+theme/custom="res://themes/theme.tres"
+theme/custom_font="res://themes/font.tres"
+
 [physics]
 
 common/enable_pause_aware_picking=true
