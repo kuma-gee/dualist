@@ -1,6 +1,6 @@
 ## Dualist
 
-- [ ] Tic Tac Toe
+- [x] Tic Tac Toe
 - [ ] Four in a row
 - [ ] Pong
 - [ ] Dots & Boxes
