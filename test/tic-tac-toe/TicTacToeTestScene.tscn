@@ -12,4 +12,45 @@ winning_label_path = NodePath("TicTacToe/VBoxContainer/CenterContainer/VBoxConta
 
 [node name="TicTacToe" parent="." instance=ExtResource( 1 )]
 
+[node name="MarginContainer" parent="TicTacToe/VBoxContainer" index="0"]
+margin_bottom = 1812.0
+
+[node name="GridContainer" parent="TicTacToe/VBoxContainer/MarginContainer" index="0"]
+margin_bottom = 1812.0
+
+[node name="CenterContainer" parent="TicTacToe/VBoxContainer" index="1"]
+margin_top = 1816.0
+
+[node name="VBoxContainer2" parent="TicTacToe/VBoxContainer/CenterContainer" index="0"]
+margin_left = 486.0
+margin_right = 594.0
+margin_bottom = 104.0
+
+[node name="VBoxContainer" parent="TicTacToe/VBoxContainer/CenterContainer/VBoxContainer2" index="0"]
+margin_right = 64.0
+margin_bottom = 36.0
+
+[node name="PlayerTurn" parent="TicTacToe/VBoxContainer/CenterContainer/VBoxContainer2/VBoxContainer" index="0"]
+margin_right = 64.0
+margin_bottom = 16.0
+
+[node name="Winning" parent="TicTacToe/VBoxContainer/CenterContainer/VBoxContainer2/VBoxContainer" index="1"]
+margin_top = 20.0
+margin_right = 64.0
+margin_bottom = 36.0
+
+[node name="VBoxContainer2" parent="TicTacToe/VBoxContainer/CenterContainer/VBoxContainer2" index="1"]
+margin_top = 56.0
+margin_right = 108.0
+margin_bottom = 104.0
+
+[node name="BackMenu" parent="TicTacToe/VBoxContainer/CenterContainer/VBoxContainer2/VBoxContainer2" index="0"]
+margin_right = 108.0
+margin_bottom = 22.0
+
+[node name="Retry" parent="TicTacToe/VBoxContainer/CenterContainer/VBoxContainer2/VBoxContainer2" index="1"]
+margin_top = 26.0
+margin_right = 108.0
+margin_bottom = 48.0
+
 [editable path="TicTacToe"]

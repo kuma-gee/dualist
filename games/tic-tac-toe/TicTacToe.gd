@@ -15,8 +15,8 @@ onready var player_turn_label: Label = get_node(player_turn_label_path)
 export var winning_label_path: NodePath
 onready var winning_label: Label = get_node(winning_label_path)
 
-export var retry_button_path: NodePath
-onready var retry_button: Control = get_node(retry_button_path)
+export var win_overlay_path: NodePath
+onready var win_overlay: Control = get_node(win_overlay_path)
 
 onready var grid := $VBoxContainer/MarginContainer/GridContainer
 onready var grid_values := $GridValues
@@ -35,8 +35,7 @@ func _create_new_game():
 		var field_btn = FIELD_BUTTON.instance()
 		grid.add_child(field_btn)
 	
-	retry_button.hide()
-	winning_label.hide()
+	win_overlay.hide()
 	_toggle_player_turn()
 	grid_values.load_grid()
 
@@ -59,8 +58,8 @@ func _on_GridValues_grid_changed(idx):
 			var grid_item = _get_grid_item_by_index_vector(item)
 			grid_item.modulate = Color.red
 		
-		winning_label.show()
-		retry_button.show()
+		winning_label.text = player_turn_label.text + " wins!"
+		win_overlay.show()
 	
 	_toggle_player_turn()
 

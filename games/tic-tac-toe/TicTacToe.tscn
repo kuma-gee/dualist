@@ -10,9 +10,9 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-player_turn_label_path = NodePath("VBoxContainer/CenterContainer/VBoxContainer2/VBoxContainer/PlayerTurn")
-winning_label_path = NodePath("VBoxContainer/CenterContainer/VBoxContainer2/VBoxContainer/Winning")
-retry_button_path = NodePath("VBoxContainer/CenterContainer/VBoxContainer2/VBoxContainer2/Retry")
+player_turn_label_path = NodePath("VBoxContainer/PlayerTurn")
+winning_label_path = NodePath("WinOverlay/CenterContainer/VBoxContainer/Winning")
+win_overlay_path = NodePath("WinOverlay")
 
 [node name="GridValues" type="Node" parent="."]
 script = ExtResource( 5 )
@@ -25,14 +25,20 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+[node name="PlayerTurn" type="Label" parent="VBoxContainer"]
 margin_right = 1080.0
-margin_bottom = 1820.0
+margin_bottom = 16.0
+align = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+margin_top = 20.0
+margin_right = 1080.0
+margin_bottom = 1920.0
 size_flags_vertical = 3
 
 [node name="GridContainer" type="GridContainer" parent="VBoxContainer/MarginContainer"]
 margin_right = 1080.0
-margin_bottom = 1820.0
+margin_bottom = 1900.0
 custom_constants/vseparation = 0
 custom_constants/hseparation = 0
 columns = 3
@@ -40,54 +46,61 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="CenterContainer" type="CenterContainer" parent="VBoxContainer"]
-margin_top = 1824.0
-margin_right = 1080.0
-margin_bottom = 1920.0
-
-[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/CenterContainer"]
-margin_left = 490.0
-margin_right = 589.0
-margin_bottom = 96.0
-custom_constants/separation = 20
-
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/CenterContainer/VBoxContainer2"]
-margin_right = 53.0
-margin_bottom = 32.0
-size_flags_horizontal = 0
-alignment = 1
-
-[node name="PlayerTurn" type="Label" parent="VBoxContainer/CenterContainer/VBoxContainer2/VBoxContainer"]
-margin_right = 53.0
-margin_bottom = 14.0
-align = 1
-
-[node name="Winning" type="Label" parent="VBoxContainer/CenterContainer/VBoxContainer2/VBoxContainer"]
-margin_top = 18.0
-margin_right = 53.0
-margin_bottom = 32.0
-text = "You win!"
-align = 1
-
-[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/CenterContainer/VBoxContainer2"]
-margin_top = 52.0
-margin_right = 99.0
-margin_bottom = 96.0
+[node name="WinOverlay" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="BackMenu" type="Button" parent="VBoxContainer/CenterContainer/VBoxContainer2/VBoxContainer2"]
-margin_right = 99.0
-margin_bottom = 20.0
-text = "Back to Menu"
+[node name="ColorRect" type="ColorRect" parent="WinOverlay"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.588235 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Retry" type="Button" parent="VBoxContainer/CenterContainer/VBoxContainer2/VBoxContainer2"]
-margin_top = 24.0
-margin_right = 99.0
-margin_bottom = 44.0
+[node name="CenterContainer" type="CenterContainer" parent="WinOverlay"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 24.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="WinOverlay/CenterContainer"]
+margin_left = 498.0
+margin_top = 918.0
+margin_right = 606.0
+margin_bottom = 1002.0
+custom_constants/separation = 20
+
+[node name="Winning" type="Label" parent="WinOverlay/CenterContainer/VBoxContainer"]
+margin_right = 108.0
+margin_bottom = 16.0
+text = "You win!"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="WinOverlay/CenterContainer/VBoxContainer"]
+margin_top = 36.0
+margin_right = 108.0
+margin_bottom = 84.0
+
+[node name="Retry" type="Button" parent="WinOverlay/CenterContainer/VBoxContainer/VBoxContainer"]
+margin_right = 108.0
+margin_bottom = 22.0
 text = "Play again"
 
+[node name="BackMenu" type="Button" parent="WinOverlay/CenterContainer/VBoxContainer/VBoxContainer"]
+margin_top = 26.0
+margin_right = 108.0
+margin_bottom = 48.0
+text = "Back to menu"
+
 [connection signal="grid_changed" from="GridValues" to="." method="_on_GridValues_grid_changed"]
-[connection signal="pressed" from="VBoxContainer/CenterContainer/VBoxContainer2/VBoxContainer2/BackMenu" to="." method="_on_BackMenu_pressed"]
-[connection signal="pressed" from="VBoxContainer/CenterContainer/VBoxContainer2/VBoxContainer2/Retry" to="." method="_on_Retry_pressed"]
+[connection signal="pressed" from="WinOverlay/CenterContainer/VBoxContainer/VBoxContainer/Retry" to="." method="_on_Retry_pressed"]
+[connection signal="pressed" from="WinOverlay/CenterContainer/VBoxContainer/VBoxContainer/BackMenu" to="." method="_on_BackMenu_pressed"]

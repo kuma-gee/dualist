@@ -17,6 +17,6 @@ Button.tic-tac-toe:focus,
 Button.tic-tac-toe:pressed {
   color: #{$tic-tac-toe-primary};
   background: #{$transparent};
-  border-width: 5;
+  border-width: 2;
   border-color: #{$tic-tac-toe-border};
 }
